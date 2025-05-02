@@ -68,13 +68,13 @@ const Getquotes = () => {
   };
 
   return (
-    <div className=" bg-white flex items-center justify-center sm:px-6">
-    <div className="relative w-full max-w-lg sm:max-w-xl md:max-w-3xl bg-white border border-blue-100 p-6 sm:p-8 md:p-10 shadow-xl overflow-hidden">
+    <div className=" bg-white flex items-center justify-center sm:px-6 py-10">
+    <div className="relative w-full max-w-lg sm:max-w-xl md:max-w-3xl bg-white border border-blue-100 rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl overflow-hidden">
       {/* Decorative corners */}
       <div className="absolute top-0 left-0 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-100 to-transparent rounded-br-full z-0" />
       <div className="absolute bottom-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-tl from-blue-100 to-transparent rounded-tl-full z-0" />
   
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-6 sm:mb-8 relative z-10 p-4">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-6 sm:mb-8 relative z-10">
         Request a Quote
       </h1>
   

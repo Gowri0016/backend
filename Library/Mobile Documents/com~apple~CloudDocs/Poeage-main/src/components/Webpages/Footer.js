@@ -47,49 +47,50 @@ const Footer = () => {
       </section>
 
       {/* What We Do & Contact Sections */}
-      <section className="container mx-auto py-10 px-4 grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
+      <section className="container mx-auto py-10 px-4 flex flex-col items-center relative z-10">
+  <motion.div
+    whileHover={{ scale: 1.03 }}
+    className="bg-gray-900 text-gray-200 rounded-2xl p-6 shadow-md w-full max-w-md text-center"
+  >
+    <h6 className="uppercase font-bold text-2xl sm:text-3xl mb-4 text-gradient bg-gradient-to-r from-blue-500 to-white bg-clip-text text-transparent">
+      Contact Us
+    </h6>
+    <ul className="space-y-4 text-sm sm:text-base text-left">
+      <li className="flex items-center space-x-2">
+        <MailIcon className="w-5 h-5 text-pink-500" />
+        <a href="mailto:info@poeage.com" className="hover:text-pink-400">info@poeage.com</a>
+      </li>
+      <li className="flex items-center space-x-2 flex-wrap">
+        <PhoneIcon className="w-5 h-5 text-green-500" />
+        <a href="tel:7358039616" className="hover:text-green-400">73580-39616</a>
+        <span>/</span>
+        <a href="tel:8056889616" className="hover:text-green-400">80568-89616</a>
+      </li>
+      <li className="flex items-center space-x-2">
+        <MessageCircleIcon className="w-5 h-5 text-green-600" />
+        <a href="https://wa.me/917358039616" className="hover:text-green-500">WhatsApp</a>
+      </li>
+      <li className="flex items-center space-x-2">
+        <InstagramIcon className="w-5 h-5 text-pink-500" />
+        <a href="https://www.instagram.com/poeage_com" className="hover:text-pink-400">Instagram</a>
+      </li>
+      <li className="flex items-center space-x-2">
+        <LinkedinIcon className="w-5 h-5 text-blue-700" />
+        <a href="https://www.linkedin.com/in/poeage/" className="hover:text-blue-600">LinkedIn</a>
+      </li>
+      <li className="flex items-center space-x-2">
+        <TwitterIcon className="w-5 h-5 text-sky-500" />
+        <a href="https://x.com/PoeageCom" className="hover:text-sky-400">Twitter</a>
+      </li>
+      <li className="flex items-center space-x-2">
+        <FacebookIcon className="w-5 h-5 text-blue-600" />
+        <a href="https://www.facebook.com/profile.php?id=61575707375728" className="hover:text-blue-500">Facebook</a>
+      </li>
+    </ul>
+  </motion.div>
 
-        {/* Contact Info */}
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          className="bg-gray-900 text-gray-200 rounded-2xl p-6 shadow-md"
-        >
-          <h6 className="uppercase font-bold text-2xl sm:text-3xl mb-4 text-gradient bg-gradient-to-r from-blue-500 to-white bg-clip-text text-transparent">
-            Contact Us
-          </h6>
-          <ul className="space-y-4 text-sm sm:text-base">
-            <li className="flex items-center space-x-2">
-              <MailIcon className="w-5 h-5 text-pink-500" />
-              <a href="mailto:info@poeage.com" className="hover:text-pink-400">info@poeage.com</a>
-            </li>
-            <li className="flex items-center space-x-2 flex-wrap">
-              <PhoneIcon className="w-5 h-5 text-green-500" />
-              <a href="tel:7358039616" className="hover:text-green-400">73580-39616</a>
-              <span>/</span>
-              <a href="tel:8056889616" className="hover:text-green-400">80568-89616</a>
-            </li>
-            <li className="flex items-center space-x-2">
-              <MessageCircleIcon className="w-5 h-5 text-green-600" />
-              <a href="https://wa.me/917358039616" className="hover:text-green-500">WhatsApp</a>
-            </li>
-            <li className="flex items-center space-x-2">
-              <InstagramIcon className="w-5 h-5 text-pink-500" />
-              <a href="https://www.instagram.com/poeage_com" className="hover:text-pink-400">Instagram</a>
-            </li>
-            <li className="flex items-center space-x-2">
-              <LinkedinIcon className="w-5 h-5 text-blue-700" />
-              <a href="https://www.linkedin.com/in/poeage/" className="hover:text-blue-600">LinkedIn</a>
-            </li>
-            <li className="flex items-center space-x-2">
-              <TwitterIcon className="w-5 h-5 text-sky-500" />
-              <a href="https://x.com/PoeageCom" className="hover:text-sky-400">Twitter</a>
-            </li>
-            <li className="flex items-center space-x-2">
-              <FacebookIcon className="w-5 h-5 text-blue-600" />
-              <a href="https://www.facebook.com/profile.php?id=61575707375728" className="hover:text-blue-500">Facebook</a>
-            </li>
-          </ul>
-        </motion.div>
+
+
       </section>
 
       {/* Live Location */}
