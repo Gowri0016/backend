@@ -33,7 +33,7 @@ export const Header = () => {
         <header className="fixed z-20 w-full bg-white shadow-md text-black">
             <div className="container mx-auto flex justify-between items-center px-4 md:px-8 h-16">
                 {/* Logo */}
-                <a href="/" className="text-lg w-44 font-bold flex items-center">
+                <a href="/" className="text-lg w-72 h-64 font-bold flex items-center">
                     <img src={navbar.logo} alt="Logo" className="h-10" />
                 </a>
 

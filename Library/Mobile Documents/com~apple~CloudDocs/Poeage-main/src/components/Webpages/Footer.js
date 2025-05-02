@@ -30,22 +30,6 @@ const Footer = () => {
         />
       </div>
 
-      {/* About Us Section */}
-      <section className="container mx-auto py-8 px-4 sm:px-6 flex justify-center relative z-10">
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          className="bg-gray-900 text-gray-200 rounded-2xl p-6 sm:p-10 w-full max-w-3xl text-center shadow-lg"
-        >
-          <h6 className="uppercase font-bold text-2xl sm:text-3xl mb-4 text-gradient bg-gradient-to-r from-blue-500 to-white bg-clip-text text-transparent">
-            About Us
-          </h6>
-          <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-            Welcome to <span className="text-sky-500 font-semibold">Poeage</span>, your trusted partner in innovative web development and IT solutions.
-            Our founder, <span className="text-sky-500 hover:text-sky-300">Mr. Gowrishankar</span>, leads us to redefine digital success.
-          </p>
-        </motion.div>
-      </section>
-
       {/* What We Do & Contact Sections */}
       <section className="container mx-auto py-10 px-4 flex flex-col items-center relative z-10">
   <motion.div

@@ -96,7 +96,7 @@ const service = [
       },
       {
         image : Approch,
-        topic  : "Approch",
+        topic  : "Approach",
         content  :`Approach: Our approach is customer-centric, focusing on understanding your challenges and providing personalized solutions. We prioritize collaboration and transparency to ensure success.`
       },
       {
