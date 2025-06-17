@@ -4,28 +4,24 @@ import { FaFire } from 'react-icons/fa';
 import emailjs from 'emailjs-com';
 
 export default function Contact() {
-  const formRef = useRef();
+  const formRef = useRef(null);
   const [status, setStatus] = useState('');
   const [errors, setErrors] = useState({});
 
-  const validateForm = (formData) => {
+  const validateForm = ({ user_name, user_email, user_phone, message }) => {
     const newErrors = {};
-    const nameRegex = /^[a-zA-Z\s]+$/;
-    const phoneRegex = /^[0-9]{10}$/;
+    const nameRegex = /^[a-zA-Z\s]{2,}$/;
+    const phoneRegex = /^[6-9]\d{9}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!formData.user_name || !nameRegex.test(formData.user_name)) {
-      newErrors.user_name = "Enter a valid name (letters and spaces only).";
-    }
-    if (!formData.user_email || !emailRegex.test(formData.user_email)) {
-      newErrors.user_email = "Enter a valid email address.";
-    }
-    if (!formData.user_phone || !phoneRegex.test(formData.user_phone)) {
-      newErrors.user_phone = "Enter a valid 10-digit phone number.";
-    }
-    if (!formData.message || formData.message.trim().length < 5) {
-      newErrors.message = "Message should be at least 5 characters long.";
-    }
+    if (!user_name || !nameRegex.test(user_name))
+      newErrors.user_name = 'Enter a valid name (min 2 letters).';
+    if (!user_email || !emailRegex.test(user_email))
+      newErrors.user_email = 'Enter a valid email address.';
+    if (!user_phone || !phoneRegex.test(user_phone))
+      newErrors.user_phone = 'Enter a valid 10-digit Indian phone number.';
+    if (!message || message.trim().length < 5)
+      newErrors.message = 'Message should be at least 5 characters.';
 
     return newErrors;
   };
@@ -34,15 +30,18 @@ export default function Contact() {
     e.preventDefault();
     setStatus('');
 
+    const form = formRef.current;
+    if (!form) return setStatus('Form not available.');
+
     const formData = {
-      user_name: formRef.current.user_name.value.trim(),
-      user_email: formRef.current.user_email.value.trim(),
-      user_phone: formRef.current.user_phone.value.trim(),
-      message: formRef.current.message.value.trim()
+      user_name: form.user_name.value.trim(),
+      user_email: form.user_email.value.trim(),
+      user_phone: form.user_phone.value.trim(),
+      message: form.message.value.trim(),
     };
 
     const formErrors = validateForm(formData);
-    if (Object.keys(formErrors).length > 0) {
+    if (Object.keys(formErrors).length) {
       setErrors(formErrors);
       return;
     }
@@ -51,26 +50,19 @@ export default function Contact() {
     setStatus('Sending...');
 
     emailjs
-      .sendForm(
-        'service_5lxmqcn',
-        'template_vixtzz7',
-        formRef.current,
-        'W6HYSAjaPwBPPrWp2'
-      )
+      .sendForm('service_5lxmqcn', 'template_vixtzz7', form, 'W6HYSAjaPwBPPrWp2')
       .then(() => {
-        setStatus('Message sent successfully!');
-        formRef.current.reset();
+        setStatus('✅ Message sent successfully!');
+        form.reset();
       })
-      .catch((error) => {
-        console.error(error.text);
-        setStatus('Failed to send. Please try again.');
+      .catch((err) => {
+        console.error(err);
+        setStatus('❌ Failed to send. Please try again.');
       });
   };
 
   const renderError = (field) =>
-    errors[field] && (
-      <p className="text-sm text-red-600 mt-1">{errors[field]}</p>
-    );
+    errors[field] && <p className="text-sm text-red-600 mt-1">{errors[field]}</p>;
 
   return (
     <div className="bg-gradient-to-br from-orange-50 via-white to-red-100 min-h-screen py-16 px-4 flex items-center justify-center">
@@ -100,7 +92,6 @@ export default function Contact() {
         </div>
 
         <form ref={formRef} onSubmit={sendEmail} className="grid gap-6 md:grid-cols-2">
-          {/* Full Name */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
             <label className="block mb-1 text-gray-800 font-medium">Full Name</label>
             <input
@@ -109,10 +100,9 @@ export default function Contact() {
               placeholder="John Doe"
               className="w-full bg-white/70 backdrop-blur-sm border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-400 shadow-sm"
             />
-            {renderError("user_name")}
+            {renderError('user_name')}
           </motion.div>
 
-          {/* Email */}
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
             <label className="block mb-1 text-gray-800 font-medium">Email Address</label>
             <input
@@ -121,22 +111,20 @@ export default function Contact() {
               placeholder="you@example.com"
               className="w-full bg-white/70 backdrop-blur-sm border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-400 shadow-sm"
             />
-            {renderError("user_email")}
+            {renderError('user_email')}
           </motion.div>
 
-          {/* Phone */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
             <label className="block mb-1 text-gray-800 font-medium">Phone Number</label>
             <input
               type="tel"
               name="user_phone"
-              placeholder="+91 98765 43210"
+              placeholder="9876543210"
               className="w-full bg-white/70 backdrop-blur-sm border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-400 shadow-sm"
             />
-            {renderError("user_phone")}
+            {renderError('user_phone')}
           </motion.div>
 
-          {/* Message */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -150,10 +138,9 @@ export default function Contact() {
               placeholder="Type your message here..."
               className="w-full bg-white/70 backdrop-blur-sm border border-gray-300 rounded-lg px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-red-400 shadow-sm"
             ></textarea>
-            {renderError("message")}
+            {renderError('message')}
           </motion.div>
 
-          {/* Submit */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -162,9 +149,14 @@ export default function Contact() {
           >
             <button
               type="submit"
-              className="bg-gradient-to-r from-red-600 to-orange-500 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:from-orange-600 hover:to-red-700 transition-transform duration-300 hover:scale-105"
+              disabled={status === 'Sending...'}
+              className={`bg-gradient-to-r from-red-600 to-orange-500 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition-transform duration-300 ${
+                status === 'Sending...'
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'hover:scale-105 hover:from-orange-600 hover:to-red-700'
+              }`}
             >
-              Send Message
+              {status === 'Sending...' ? 'Sending...' : 'Send Message'}
             </button>
             {status && <p className="mt-4 text-sm text-gray-800">{status}</p>}
           </motion.div>
@@ -173,3 +165,4 @@ export default function Contact() {
     </div>
   );
 }
+

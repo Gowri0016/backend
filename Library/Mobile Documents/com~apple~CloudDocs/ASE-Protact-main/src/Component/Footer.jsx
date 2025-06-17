@@ -53,11 +53,19 @@ function Footer() {
             <a href="tel:+919384593993" className="hover:underline text-white/80">
               +91 938-459-3993
             </a>
+            <div>
+            <a href="tel:+919944017723" className="hover:underline text-white/80">
+              +91 994-401-7723
+            </a>
+            </div>
           </div>
-          <div>
-            <h4 className="font-semibold text-white mb-1">📧 Email</h4>
-            <p>aseprotact@gmail.com</p>
-          </div>
+         <div>
+  <h4 className="font-semibold text-white mb-1">📧 Email</h4>
+  <a href="mailto:aseprotact@gmail.com" className="text-white hover:underline">
+    aseprotact@gmail.com
+  </a>
+</div>
+
           <div>
             <h4 className="font-semibold text-white mb-1">📍 Address</h4>
             <p className="text-sm text-white">
@@ -82,3 +90,4 @@ function Footer() {
 }
 
 export default Footer;
+
